@@ -1,0 +1,8 @@
+@media only screen and (min-width: $screen-lg-min) {
+  .container {
+    width: $container-lg;
+  }
+
+  @include flexbox-grid-columns(lg);
+  @include flexbox-grid-utilities(lg);
+}

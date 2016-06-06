@@ -1,0 +1,94 @@
+// gutter settings
+$gutter-width: 1rem !default;
+$outer-margin: 2rem !default;
+$gutter: (($gutter-width * 0.5) * -1) !default;
+$half-gutter-width: ($gutter-width * 0.5) !default;
+
+// base values for bps
+$xs-min: 30;
+$sm-min: 48;
+$md-min: 64;
+$lg-min: 75;
+
+// add ems to unitless values
+$screen-xs-min: $xs-min + 'em';
+$screen-sm-min: $sm-min + 'em';
+$screen-md-min: $md-min + 'em';
+$screen-lg-min: $lg-min + 'em';
+
+// container widths
+$container-sm: $sm-min + $gutter-width;
+$container-md: $md-min + $gutter-width;
+$container-lg: $lg-min + $gutter-width;
+
+// columns, TODO: implement other column values ? Too much Maths ?
+$min-column: 1;
+$max-column: 12;
+
+// main mixin for constructing column classes in a given bp
+@mixin flexbox-grid-columns($colsize) {
+  @for $i from $min-column through $max-column {
+    $perc: percentage($i / $max-column);
+    
+    .col-#{$colsize}-#{$i} {
+      flex-basis: $perc;
+      max-width: $perc;
+    }
+
+    @if $i == 12 {
+      .col-#{$colsize}-offset-0 {
+        margin-left: 0;
+      }        
+    } @else {
+      .col-#{$colsize}-offset-#{$i} {
+        margin-left: $perc;
+      }
+    }
+  }  
+}
+
+// creates the helper / utilitie classes for a given bp
+@mixin flexbox-grid-utilities($colsize) {
+    .start-#{$colsize} {
+      justify-content: flex-start;
+      text-align: start;
+    }
+
+    .center-#{$colsize} {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .end-#{$colsize} {
+      justify-content: flex-end;
+      text-align: end;
+    }
+
+    .top-#{$colsize} {
+      align-items: flex-start;
+    }
+
+    .middle-#{$colsize} {
+      align-items: center;
+    }
+
+    .bottom-#{$colsize} {
+      align-items: flex-end;
+    }
+
+    .around-#{$colsize} {
+      justify-content: space-around;
+    }
+
+    .between-#{$colsize} {
+      justify-content: space-between;
+    }
+
+    .first-#{$colsize} {
+      order: -1;
+    }
+
+    .last-#{$colsize} {
+      order: 1;
+    }
+}

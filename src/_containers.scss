@@ -1,0 +1,41 @@
+// border-box all the things!
+*, 
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.container-fluid,
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  padding-right: $outer-margin;
+  padding-left: $outer-margin;
+}
+
+.row {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: $gutter;
+  margin-left: $gutter;
+}
+
+.row.reverse {
+  flex-direction: row-reverse;
+}
+
+.col.reverse {
+  flex-direction: column-reverse;
+}
+
+// general flex col settings shared across all bps and types
+[class^="col-"] {
+  flex: 0 0 auto;
+  padding-right: $half-gutter-width;
+  padding-left: $half-gutter-width;
+}
